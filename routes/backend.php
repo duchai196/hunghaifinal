@@ -1,0 +1,14 @@
+<?php
+Route::group(['namespace'=>'Backend','prefix'=>'admin'],function(){
+	Route::resources([
+		'category'=>'CategoryController',
+		'product'=>'ProductController',
+		'post'=>'PostController',
+		'slide'=>'SlideController',
+		'brand'=>'BrandController',
+	]);
+	Route::post('category-ajax','CategoryController@ajax')->name('category.ajax');
+	Route::post('brand-ajax','BrandController@ajax')->name('brand.ajax');
+	Route::post('post-ajax','PostController@ajax')->name('post.ajax');
+	Route::post('product-ajax','ProductController@ajax')->name('product.ajax');
+});
