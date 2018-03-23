@@ -6,6 +6,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin'],function(){
 		'post'=>'PostController',
 		'slide'=>'SlideController',
 		'brand'=>'BrandController',
+        'attribute' => 'AttributeController',
+        'specie' => 'SpeController',
 	]);
 	Route::post('category-ajax','CategoryController@ajax')->name('category.ajax');
 	Route::post('brand-ajax','BrandController@ajax')->name('brand.ajax');

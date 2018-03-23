@@ -48,6 +48,7 @@
                 </ul>
             </li>
 
+
             <li class="navigation__sub @@formactive {{setActive('post')}}">
                 <a href="{{route('post.index')}}"><i class="zmdi zmdi-collection-text"></i> Bài viết</a>
 
