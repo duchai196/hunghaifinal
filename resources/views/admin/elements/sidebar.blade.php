@@ -67,6 +67,8 @@
 
                 </ul>
             </li>
+            <li class="@@photogalleryactive"><a href=""><i class="zmdi zmdi-settings"></i> Cài đặt</a>
+            </li>
 
 
             <li class="navigation__sub @@chartsactive {{setActive('brand')}}">

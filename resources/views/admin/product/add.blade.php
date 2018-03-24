@@ -1,14 +1,8 @@
 @extends('admin.master')
 @section('title','Thêm sản phẩm ')
 @section('css')
-<link rel="stylesheet" href="admin_assets/vendors/bower_components/dropzone/dist/dropzone.css">
-<link rel="stylesheet"
-href="admin_assets/vendors/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
 
-<link rel="stylesheet" href="admin_assets/vendors/bower_components/trumbowyg/dist/ui/trumbowyg.min.css">
 <link rel="stylesheet" href="admin_assets/vendors/bower_components/select2/dist/css/select2.min.css">
-<link rel="stylesheet" href="admin_assets/vendors/bower_components/rateYo/min/jquery.rateyo.min.css">
-<link rel="stylesheet" href="admin_assets/vendors/bower_components/rateYo/min/jquery.rateyo.min.css">
 @stop
 @section('content')
 <div class="content__inner">
@@ -215,11 +209,7 @@ href="admin_assets/vendors/bower_components/bootstrap-colorpicker/dist/css/boots
 @section('script')
 
 <script src="admin_assets/vendors/bower_components/autosize/dist/autosize.min.js"></script>
-<script src="admin_assets/vendors/bower_components/trumbowyg/dist/trumbowyg.min.js"></script>
-<script src="admin_assets/vendors/bower_components/rateYo/min/jquery.rateyo.min.js"></script>
 <script src="admin_assets/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="admin_assets/vendors/bower_components/jquery-text-counter/textcounter.min.js"></script>
-<script src="admin_assets/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
 <script>

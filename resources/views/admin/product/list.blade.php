@@ -66,8 +66,8 @@
                         <h4 class="card-title">Không có sản phẩm nào!</h4>
                     @endif
                     </tbody>
+                    {!! $listProduct->render() !!}
                 </table>
-                {!! $listProduct->render() !!}
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@
 
 
 require_once 'backend.php';
+require_once 'frontend.php';
 
 
 
@@ -27,4 +28,4 @@ Route::get('test',function (){
         
    } 
 });
-Route::view('/','front.pages.index');
+//Route::view('/','front.pages.index');
