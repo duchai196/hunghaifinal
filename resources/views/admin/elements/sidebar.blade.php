@@ -67,7 +67,8 @@
 
                 </ul>
             </li>
-            <li class="@@photogalleryactive"><a href=""><i class="zmdi zmdi-settings"></i> Cài đặt</a>
+            <li class="@@photogalleryactive"><a href="{{route("setting.index")}}"><i class="zmdi zmdi-settings"></i> Cài
+                    đặt</a>
             </li>
 
 

@@ -39,7 +39,7 @@
                     Nhập key dưới dạng viết liền không dấu
                 </p>
 
-                <form action="{{route('postSettings')}}" method="POST">
+                <form action="{{route('setting.store')}}" method="POST">
                     {!! csrf_field() !!}
                     <div class="row">
                         <div class="col-sm-6">
