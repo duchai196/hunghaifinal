@@ -20,4 +20,5 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin'],function(){
     Route::get('edit-setting/{id}', 'SettingController@edit')->name('setting.edit');
     Route::post('update-setting/{id}', 'SettingController@update')->name('setting.update');
     Route::post('setting-ajax', 'SettingController@ajax')->name('setting.ajax');
+    Route::post('countdown-ajax', 'CountdownController@ajax')->name('countdown.ajax');
 });

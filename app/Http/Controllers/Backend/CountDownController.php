@@ -17,10 +17,9 @@ class CountDownController extends Controller
      */
     public function index()
     {
-//        $listProduct=Product::where(['sale_price','!=',0],['status',1])->take(50)->get();
-        $listProduct = DB::select(DB::raw("SELECT * FROM products WHERE  status=1 AND sale_price <> 0 "));
-        dd($listProduct);
-        return view('admin.setting.add', compact('listProducts'));
+        $listCountdown = Countdown::all();
+        return view('admin.setting.countdown.list', compact('listCountdown'));
+
     }
 
     /**
@@ -30,7 +29,8 @@ class CountDownController extends Controller
      */
     public function create()
     {
-        //
+        $listProducts = DB::select(DB::raw("SELECT * FROM products WHERE  status=1 AND sale_price <> 0 "));
+        return view('admin.setting.countdown.add', compact('listProducts'));
     }
 
     /**
@@ -41,7 +41,18 @@ class CountDownController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'product_id' => 'required',
+            'datetime' => 'required',
+        ]);
+
+        $countdown = new Countdown();
+        $countdown->product_id = $request->product_id;
+        $countdown->datetime = $request->datetime;
+        $countdown->save();
+
+        return redirect()->route('countdown.index')->with(['level' => 'success', 'message' => 'Đã lưu cài đặt!', 'listCountdown' => Countdown::all()]);
+
     }
 
     /**
@@ -63,7 +74,8 @@ class CountDownController extends Controller
      */
     public function edit(Countdown $countdown)
     {
-        //
+        $listCountdown = Countdown::all();
+        return view('admin.setting.countdown.edit', compact('countdown', 'listCountdown'));
     }
 
     /**
@@ -75,7 +87,18 @@ class CountDownController extends Controller
      */
     public function update(Request $request, Countdown $countdown)
     {
-        //
+
+        $this->validate($request, [
+            'product_id' => 'required',
+            'datetime' => 'required',
+        ]);
+
+
+        $countdown->product_id = $request->product_id;
+        $countdown->datetime = $request->datetime;
+        $countdown->save();
+
+        return redirect()->route('countdown.index')->with(['level' => 'success', 'message' => 'Đã lưu cài đặt!']);
     }
 
     /**
@@ -87,5 +110,17 @@ class CountDownController extends Controller
     public function destroy(Countdown $countdown)
     {
         //
+    }
+
+    public function ajax(Request $request)
+    {
+        if ($request->action == "delete") {
+            $id = $request->id;
+            if (Countdown::find($id)) {
+                Countdown::destroy($id);
+                return json_encode(true);
+            }
+            return false;
+        }
     }
 }

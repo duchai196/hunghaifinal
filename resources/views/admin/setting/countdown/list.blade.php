@@ -10,8 +10,7 @@
             </ol>
         </nav>
 
-        <a href="{{route('setting.create')}}" class="btn btn-dark">Thêm cài đặt</a>
-        <a href="{{route('countdown.create')}}" class="btn btn-dark">Cài đặt đếm giờ giảm giá</a>
+        <a href="{{route('countdown.create')}}" class="btn btn-dark">Thêm cài đặt</a>
 
         <div class="actions">
             <a href="#" class="actions__item zmdi zmdi-trending-up"></a>
@@ -31,25 +30,28 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Dữ liệu</h4>
-            <h6 class="card-subtitle">Chọn vào hành động để sửa, xóa bài viết</h6>
 
             <div class="table-responsive">
                 <table id="data-table" class="table">
                     <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Key</th>
-                        <th>Values</th>
+                        <th>Product</th>
+                        <th>Datetime</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @if(count($values)>0)
-                        @foreach($values as $item)
+                    @if(count($listCountdown)>0)
+                        @foreach($listCountdown as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$item->key}}</td>
-                                <td>{{$item->value}}</td>
+                                <td>@php
+                                        $product=\App\Model\Product::select('name','id')->where('id',$item->id)->first();
+                                            echo $product->name;
+                                    @endphp
+                                </td>
+                                <td>{{$item->datetime}}</td>
                                 <td><a href="{{route('setting.edit',$item->id)}}"> <i
                                                 class="zmdi zmdi-edit zmdi-hc-fw"> </i></a>
                                     <a data-id="{{$item->id}}" class="delete" href="javascript:void(0)"><i
@@ -79,7 +81,7 @@
             $(document).on('click', '.delete', function () {
                 if (confirm('Bạn có chắc muốn xóa?')) {
                     var id = $(this).attr('data-id');
-                    var url = '{!! route('setting.ajax')!!}';
+                    var url = '{!! route('countdown.ajax')!!}';
                     $.ajax({
                         url: url,
                         type: 'POST',

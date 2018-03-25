@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="btn-demo">
-            <button class="btn btn-light pull-left" onclick="window.history.back()">Quay lại</button>
+            <span class="btn btn-light pull-left" onclick="window.history.back()">Quay lại</span>
             <button class="btn btn-light pull-right" type="submit">Thêm sản phẩm</button>
         </div>
         </form>

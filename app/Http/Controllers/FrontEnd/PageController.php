@@ -15,6 +15,7 @@ class PageController extends Controller
         $listFeaturedProducts = Product::where('status', 1)->where('featured', 1)->orderBy('created_at', 'desc')->take(6)->get();
         $listCategories = Category::where('category_type', 'product')->take(5)->get();
 
+
         return view('front.pages.index', compact('listFeaturedProducts', 'listCategories', 'listNewProduct'));
 
     }

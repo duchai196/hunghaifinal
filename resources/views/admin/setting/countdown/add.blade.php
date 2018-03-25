@@ -1,15 +1,15 @@
 @extends('admin.master')
 @section('title','Thêm danh mục ')
 @section('css')
-    <link rel="stylesheet"
-          href="admin_assets/vendors/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
+
 
     <link rel="stylesheet" href="admin_assets/vendors/bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="admin_assets/vendors/bower_components/flatpickr/dist/flatpickr.min.css">
 @stop
 @section('content')
     <div class="content__inner">
         <header class="content__title">
-            <h1>Thêm danh mục mới</h1>
+            <h1>COUNTDOWN</h1>
 
             <div class="actions">
                 <a href="#" class="actions__item zmdi zmdi-trending-up"></a>
@@ -33,56 +33,50 @@
                         {{Session::get('message')}}
                     </div>
                 @endif
-                    @if(count($errors)>0)
-                        @foreach($errors->all() as $err)
-                            <div class="alert alert-warning">
-                                {{$err}}
-                            </div>
-                        @endforeach
-                    @endif
+                @if(count($errors)>0)
+                    @foreach($errors->all() as $err)
+                        <div class="alert alert-warning">
+                            {{$err}}
+                        </div>
+                    @endforeach
+                @endif
                 <h4 class="card-title">Nhập dữ liệu vào các trường dữ liệu dưới đây</h4>
-                <form action="{{route('category.store')}}" method="POST">
+                <form action="{{route('countdown.store')}}" method="POST">
+
                     {!! csrf_field() !!}
-
-                    <h3 class="card-body__title">Tên danh mục</h3>
-
-
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="eg: Cầu lông" name="name" required>
-                        <i class="form-group__bar"></i>
-                    </div>
-                    <h3 class="card-body__title">Thể loại danh mục</h3>
-
-                    <label class="custom-control custom-checkbox">
-                        <input type="radio" name="category_type" class="custom-control-input" value="post">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Bài viết</span>
-                    </label>
-
-                    <label class="custom-control custom-checkbox">
-                        <input type="radio" name="category_type" class="custom-control-input" value="product">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Sản phẩm</span>
-                    </label>
-                    <br>
-                    <br>
-                    <br>
-                    <h4 class="card-title">Danh mục cha</h4>
+                    @if(count($listProducts)>0)
+                        <div class="row">
+                            <div class=" col-sm-4 clearfix  ">
+                                <h3 class="card-body__title">Chọn sản phẩm đếm ngược giảm giá</h3>
+                                <div class="form-group">
+                                    <select class="select2" name="product_id" id="parentIdSelect">
+                                        @foreach($listProducts as $product)
+                                            <option value="{{$product->id}}">{{$product->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
 
-                    <div class="form-group">
-                        <select class="select2" name="parent_id" id="parentIdSelect">
-                            <option value="0">-- Chọn thể loại trước</option>
-                            ;
-                        </select>
-                    </div>
+                            <div class=" col-sm-6">
+                                <h3 class="card-body__title">Thời gian còn bắt đầu</h3>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control datetime-picker"
+                                               placeholder="Pick a date & time" name="datetime">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
 
-
+                        </div>
             </div>
         </div>
         <div class="btn-demo">
             <span class="btn btn-light pull-left" onclick="window.history.back()">Quay lại</span>
-            <button class="btn btn-light pull-right" type="submit">Thêm sản phẩm</button>
+            <button class="btn btn-light pull-right" type="submit">Lưu cài đặt</button>
         </div>
         </form>
 
@@ -93,6 +87,7 @@
 
     <script src="admin_assets/vendors/bower_components/trumbowyg/dist/trumbowyg.min.js"></script>
     <script src="admin_assets/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="admin_assets/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
 
     <script>
         $(document).ready(function () {

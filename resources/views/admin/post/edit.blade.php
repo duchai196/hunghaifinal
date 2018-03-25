@@ -152,7 +152,7 @@ href="admin_assets/vendors/bower_components/bootstrap-colorpicker/dist/css/boots
 </div>
 </div>
 <div class="btn-demo">
-    <button class="btn btn-light pull-left" onclick="window.history.back()">Quay lại</button>
+    <span class="btn btn-light pull-left" onclick="window.history.back()">Quay lại</span>
     <button class="btn btn-light pull-right" type="submit">Cập nhật bài viết</button>
 </div>
 

@@ -293,29 +293,14 @@
 
                                     <span class="onsale">-50%</span>
 
-                                    <span class="star-rating">
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <span class="review">5 Review(s)</span>
-
-                                        </span>
-
                                 </div>
 
                                 <div class="product-count-down">
 
                                     <div class="title-count-down">Hurry up!<span>Deal ends in:</span></div>
 
-                                    <div class="kt-countdown" data-y="2018" data-m="3" data-d="6" data-h="10" data-i="0"
+                                    <div class="kt-countdown" data-y="2018" data-m="3" data-d="28" data-h="10"
+                                         data-i="0"
                                          data-s="0"></div>
 
                                 </div>
