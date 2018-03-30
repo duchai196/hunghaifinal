@@ -15,7 +15,8 @@ class SlideController extends Controller
      */
     public function index()
     {
-        //
+        $listSlide = Slide::paginate(20);
+        return view('admin.slide.list', compact('listSlide'));
     }
 
     /**
@@ -25,7 +26,7 @@ class SlideController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.slide.add');
     }
 
     /**
@@ -36,7 +37,26 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'image' => 'required',
+            'type' => 'required',
+        ], [
+            'image.required' => 'Bạn chưa chọn hình ảnh',
+            'type.required' => 'Bạn chưa  chọn vị trí hình ảnh',
+        ]);
+        $slide = new Slide();
+        $slide->title = $request->title;
+        $slide->descriptions = $request->tidescriptionstle;
+        $slide->link = $request->link;
+        $slide->title_link = $request->title_link;
+        $slide->image = $request->image;
+        if ($request->status == "on") {
+            $slide->status = 1;
+        }
+        $slide->type = $request->type;
+
+        $slide->save();
+        return redirect()->back()->with(['level' => 'success', 'message' => 'Thêm  banner thành công!']);
     }
 
     /**

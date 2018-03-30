@@ -2,8 +2,19 @@
 @section('title','Danh sách')
 @section('content')
     <header class="content__title">
+        <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
+            </ol>
+        </nav>
 
-        <a href="{{route('countdown.create')}}" class="btn btn-dark">Thêm cài đặt</a>
+        <div class="row">
+            <div class="col-2">
+                <a href="{{route('slide.create')}}" class="btn btn-dark">THÊM BANNER</a>
+            </div>
+        </div>
 
         <div class="actions">
             <a href="#" class="actions__item zmdi zmdi-trending-up"></a>
@@ -23,37 +34,31 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Dữ liệu</h4>
+            <h6 class="card-subtitle">Chọn vào hành động để sửa, xóa danh mục</h6>
 
             <div class="table-responsive">
                 <table id="data-table" class="table">
-                    <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Product</th>
-                        <th>Datetime</th>
-                        <th>Hành động</th>
-                    </tr>
-                    </thead>
                     <tbody>
-                    @if(count($listCountdown)>0)
-                        @foreach($listCountdown as $item)
+                    @if(count($listSlide))
+                        @foreach($listSlide as $item)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>@php
-                                        $product=\App\Model\Product::select('name','id')->where('id',$item->id)->first();
-                                            echo $product->name;
-                                    @endphp
-                                </td>
-                                <td>{{$item->datetime}}</td>
-                                <td><a href="{{route('setting.edit',$item->id)}}"> <i
-                                                class="zmdi zmdi-edit zmdi-hc-fw"> </i></a>
-                                    <a data-id="{{$item->id}}" class="delete" href="javascript:void(0)"><i
-                                                class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
-                                </td>
+                                <td>Title: {{$item->title}}</td>
+                            </tr>
+                            <tr>
+                                <td>Subtitle: {{$item->sub_title}}</td>
+                            </tr>
+                            <tr>
+                                <td>Link: {{$item->link}}</td>
+                            </tr>
+                            <tr>
+                                <td>Button: {{$item->title_link}}</td>
+                            </tr>
+                            <tr>
+                                <td><img src="{{$item->image}}" alt="" width="100%"></td>
                             </tr>
                         @endforeach
                     @else
-                        <h4 class="card-title">Chưa có cài đặt nào!</h4>
+                        <h4 class="card-title">Không có dữ liệu</h4>
                     @endif
                     </tbody>
                 </table>
@@ -74,7 +79,7 @@
             $(document).on('click', '.delete', function () {
                 if (confirm('Bạn có chắc muốn xóa?')) {
                     var id = $(this).attr('data-id');
-                    var url = '{!! route('countdown.ajax')!!}';
+                    var url = '{!! route('category.ajax')!!}';
                     $.ajax({
                         url: url,
                         type: 'POST',

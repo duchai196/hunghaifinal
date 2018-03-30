@@ -18,7 +18,13 @@
         </div>
 
         <ul class="navigation">
-            <li class="@@indexactive "><a href="index-2.html"><i class="zmdi zmdi-home"></i> Quản trị</a></li>
+            <li class="@@indexactive "><a href="/"><i class="zmdi zmdi-home"></i> Trang chủ</a></li>
+            <li class="@@photogalleryactive"><a href="laravel-filemanager?type=image"><i class="zmdi zmdi-image"></i>
+                    Thư viện</a>
+            </li>
+            <li class="@@photogalleryactive {{setActive('slide')}}"><a href="{{route('slide.index')}}"><i
+                            class="zmdi zmdi-slideshow"></i> Slide</a>
+            </li>
 
             <li class="navigation__sub @@variantsactive {{setActive('category')}}">
                 <a href="{{route('category.index')}}"><i class="zmdi zmdi-attachment-alt zmdi-hc-fw"></i> Danh mục</a>
@@ -79,10 +85,6 @@
                     <li class="@@flotchartsactive"><a href="flot-charts.html">Flot</a></li>
                     <li class="@@otherchartsactive"><a href="other-charts.html">Other Charts</a></li>
                 </ul>
-            </li>
-
-
-            <li class="@@photogalleryactive"><a href="laravel-filemanager?type=image"><i class="zmdi zmdi-image"></i> Thư viện</a>
             </li>
 
 

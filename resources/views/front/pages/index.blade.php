@@ -199,48 +199,50 @@
                         @foreach($listFeaturedProducts as $productF)
                             <div class="product-item style1 col-md-4 col-sm-6 col-xs-6 padding-0 hidden-sm">
 
-                            <div class="product-inner equal-elem">
+                                <div class="product-inner equal-elem">
 
-                                <div class="product-thumb">
+                                    <div class="product-thumb">
 
-                                    <div class="thumb-inner">
+                                        <div class="thumb-inner">
 
-                                        <a href="#"><img src="{{$productF->image}}" alt="b5"></a>
+                                            <a href="#"><img src="{{$productF->image}}" alt="b5"></a>
+
+                                        </div>
+
+                                        @if($product->sale_price!=0)
+                                            <span class="onsale">{{number_format(($deal->price-$deal->sale_price)/$deal->price*100,0)}}
+                                                %</span>
+                                        @endif
 
                                     </div>
 
-                                    @if($product->sale_price!=0)
-                                        <span class="onsale">{{  ($product->price-$product->sale_price)/$product->price*100}}
-                                            %</span>
-                                    @endif
+                                    <div class="product-innfo">
 
-                                </div>
+                                        <div class="product-name"><a href="#">{{$productF->name}}</a></div>
 
-                                <div class="product-innfo">
-
-                                    <div class="product-name"><a href="#">{{$productF->name}}</a></div>
-
-                                    @if($productF->sale_price !=0)
-                                        <span class="price">
+                                        @if($productF->sale_price !=0)
+                                            <span class="price">
                                         <ins>{{$productF->sale_price}}</ins>
                                         <del>{{$productF->price}}</del>
                                     </span>
-                                    @else
-                                        <span class="price price-dark">
+                                        @else
+                                            <span class="price price-dark">
                                               <ins>{{$productF->price}}</ins>
                                         </span>
-                                    @endif
-                                    <div class="group-btn-hover">
+                                        @endif
+                                        <div class="group-btn-hover">
 
-                                        <div class="inner">
+                                            <div class="inner">
 
-                                            <a href="#" class="compare"><i
-                                                        class="flaticon-refresh-square-arrows"></i></a>
+                                                <a href="#" class="compare"><i
+                                                            class="flaticon-refresh-square-arrows"></i></a>
 
-                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-cart">Add to cart</a>
 
-                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
-                                                                            aria-hidden="true"></i></a>
+                                                <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i></a>
+
+                                            </div>
 
                                         </div>
 
@@ -249,8 +251,6 @@
                                 </div>
 
                             </div>
-
-                        </div>
                         @endforeach
                     </div>
 
@@ -258,177 +258,70 @@
 
                 <div class="block-daily-deals style3">
 
-                    <div class="title-of-section">Deals Of the week</div>
+                    <div class="title-of-section">Sản phẩm khuyến mại</div>
 
                     <div class="owl-carousel nav-style2" data-nav="true" data-autoplay="false" data-dots="true"
                          data-loop="true" data-margin="10"
                          data-responsive='{"0":{"items":1},"480":{"items":2},"680":{"items":3},"768":{"items":1}}'>
+                        @if(count($dealsOfWeek)>0)
+                            @foreach($dealsOfWeek as $deal)
+                                <div class="product-item style1">
 
-                        <div class="product-item style1">
+                                    <div class="product-inner">
 
-                            <div class="product-inner">
+                                        <div class="product-thumb">
 
-                                <div class="product-thumb">
+                                            <div class="thumb-inner">
 
-                                    <div class="thumb-inner">
+                                                <a href="#"><img src="{{$deal->image}}" alt="d1"></a>
 
-                                        <a href="#"><img src="{{asset('/front')}}/images/home2/d1.jpg" alt="d1"></a>
-
-                                    </div>
+                                            </div>
 
 
-                                </div>
+                                        </div>
 
-                                <div class="product-innfo">
+                                        <div class="product-innfo">
 
-                                    <div class="product-name"><a href="#">Parka with a hood Pandora Coat</a></div>
+                                            <div class="product-name"><a href="#">{{$deal->name}}</a></div>
 
-                                    <span class="price">
+                                            @if($deal->sale_price !=0)
+                                                <span class="price">
+                                                        <ins>{{$deal->sale_price}}</ins>
+                                                        <del>{{$deal->price}}</del>
+                                               </span>
+                                                <span class="onsale">-{{number_format(($deal->price-$deal->sale_price)/$deal->price*100,0)}}
+                                                    %</span>
+                                            @else
+                                                <span class="price price-dark">
+                                                   <ins>{{$deal->price}}</ins>
+                                                </span>
+                                            @endif
+                                        </div>
 
-                                            <ins>$229.00</ins>
+                                        @if(is_string($deal->datetime))
+                                            @php
+                                                $dateObject = DateTime::createFromFormat('Y-m-d H:i:s', $deal->datetime);
+                                            @endphp
 
-                                            <del>$259.00</del>
+                                            <div class="product-count-down">
 
-                                        </span>
+                                                <div class="title-count-down">Đếm ngược!<span>Còn lại:</span></div>
 
-                                    <span class="onsale">-50%</span>
-
-                                </div>
-
-                                <div class="product-count-down">
-
-                                    <div class="title-count-down">Hurry up!<span>Deal ends in:</span></div>
-
-                                    <div class="kt-countdown" data-y="2018" data-m="3" data-d="28" data-h="10"
-                                         data-i="0"
-                                         data-s="0"></div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="product-item style1">
-
-                            <div class="product-inner">
-
-                                <div class="product-thumb">
-
-                                    <div class="thumb-inner">
-
-                                        <a href="#"><img src="{{asset('/front')}}/images/home2/d1.jpg" alt="d1"></a>
+                                                <div class="kt-countdown" data-y="{{$dateObject->format('Y')}}"
+                                                     data-m="{{$dateObject->format('m')}}"
+                                                     data-d="{{$dateObject->format('d')}}"
+                                                     data-h="{{$dateObject->format('H')}}"
+                                                     data-i="{{$dateObject->format('i')}}"
+                                                     data-s="{{$dateObject->format('s')}}">
+                                                </div>
+                                            </div>
+                                        @endif
 
                                     </div>
 
-
                                 </div>
-
-                                <div class="product-innfo">
-
-                                    <div class="product-name"><a href="#">Parka with a hood Pandora Coat</a></div>
-
-                                    <span class="price">
-
-                                            <ins>$229.00</ins>
-
-                                            <del>$259.00</del>
-
-                                        </span>
-
-                                    <span class="onsale">-50%</span>
-
-                                    <span class="star-rating">
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <span class="review">5 Review(s)</span>
-
-                                        </span>
-
-                                </div>
-
-                                <div class="product-count-down">
-
-                                    <div class="title-count-down">Hurry up!<span>Deal ends in:</span></div>
-
-                                    <div class="kt-countdown" data-y="2017" data-m="8" data-d="1" data-h="10" data-i="0"
-                                         data-s="0"></div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="product-item style1">
-
-                            <div class="product-inner">
-
-                                <div class="product-thumb">
-
-                                    <div class="thumb-inner">
-
-                                        <a href="#"><img src="{{asset('/front')}}/images/home2/d1.jpg" alt="d1"></a>
-
-                                    </div>
-
-
-                                </div>
-
-                                <div class="product-innfo">
-
-                                    <div class="product-name"><a href="#">Parka with a hood Pandora Coat</a></div>
-
-                                    <span class="price">
-
-                                            <ins>$229.00</ins>
-
-                                            <del>$259.00</del>
-
-                                        </span>
-
-                                    <span class="onsale">-50%</span>
-
-                                    <span class="star-rating">
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-
-                                            <span class="review">5 Review(s)</span>
-
-                                        </span>
-
-                                </div>
-
-                                <div class="product-count-down">
-
-                                    <div class="title-count-down">Hurry up!<span>Deal ends in:</span></div>
-
-                                    <div class="kt-countdown" data-y="2017" data-m="8" data-d="1" data-h="10" data-i="0"
-                                         data-s="0"></div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                            @endforeach
+                        @endif
                     </div>
 
                 </div>
