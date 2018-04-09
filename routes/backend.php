@@ -1,5 +1,9 @@
 <?php
-Route::group(['namespace'=>'Backend','prefix'=>'admin'],function(){
+
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'checkAdmin'], function () {
+    Route::get('/', function () {
+        return view('admin.pages.index');
+    })->name('admin');
 	Route::resources([
 		'category'=>'CategoryController',
 		'product'=>'ProductController',

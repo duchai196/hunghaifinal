@@ -16,62 +16,29 @@
                     <div class="col-sm-9 padding-left-5 main-slide slide-opt-2">
 
                         <div class="owl-carousel nav-style5" data-nav="true" data-autoplay="false" data-dots="true"
-                             data-loop="true" data-margin="0"
+                             data-margin="0"
                              data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":1}}'>
 
-                            <div class="item-slide item-slide-1">
-
-                                <div class="container">
-
-                                    <div class="slide-desc slide-desc-1">
-
-                                        <div class="p-primary">Crafted For Him</div>
-
-                                        <p>Contemporary designs that Compliment his everyday Look.</p>
-
-                                        <a href="#" class="btn-shop-now">Shop Now</a>
-
+                            @foreach($slides as $key=>$slide)
+                                <div class="item-slide item-slide-{{$key+1}}"
+                                     style="background-image:url({{url("$slide->image")}}) !important;">
+                                    <div class="container">
+                                        <div class="slide-desc slide-desc-{{$key+1}}">
+                                            @if(isset($slide->title))
+                                                <div class="p-primary">{{$slide->title}}</div>
+                                            @endif
+                                            @if(isset($slide->sub_title))
+                                                <p>{{$slide->sub_title}}</p>
+                                            @endif
+                                            @if(isset($slide->title_link))
+                                                <a href="{{$slide->link}}"
+                                                   class="btn-shop-now">{{$slide->title_link}}</a>
+                                            @endif
+                                        </div>
                                     </div>
-
                                 </div>
+                            @endforeach
 
-                            </div>
-
-                            <div class="item-slide item-slide-2">
-
-                                <div class="container">
-
-                                    <div class="slide-desc slide-desc-2">
-
-                                        <div class="p-primary">The new-Laptop gift you are wishing.</div>
-
-                                        <p>Big screen in incredibly slim designs that in your hand.</p>
-
-                                        <a href="#" class="btn-shop-now">Shop Now</a>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="item-slide item-slide-3">
-
-                                <div class="container">
-
-                                    <div class="slide-desc slide-desc-3">
-
-                                        <div class="p-primary">Meet Our Brilliant New Rolling Luggage</div>
-
-                                        <p>Convenience that Packs a Punch.</p>
-
-                                        <a href="#" class="btn-shop-now">Shop Now</a>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
 
                         </div>
 
@@ -88,46 +55,17 @@
             <div class="container">
 
                 <div class="row">
-
-                    <div class="col-md-4 col-sm-6 col-xs-6">
-
-                        <div class="promotion-banner item-1 style-6">
-
-                            <a href="#" class="banner-img"><img src="{{asset('/front')}}/images/home2/banner1.jpg"
-                                                                alt="banner1"></a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 col-xs-6">
-
-                        <div class="promotion-banner item-2 style-6">
-
-                            <a href="#" class="banner-img"><img src="{{asset('/front')}}/images/home2/banner2.jpg"
-                                                                alt="banner2"></a>
-
-                            <a href="#" class="shop-now style2 hidden-mobile">Shop now<i class="fa fa-angle-right"
-                                                                                         aria-hidden="true"></i></a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-4 hidden-sm hidden-xs">
-
-                        <div class="promotion-banner item-3 style-6">
-
-                            <a href="#" class="banner-img"><img src="{{asset('/front')}}/images/home2/banner3.jpg"
-                                                                alt="banner3"></a>
-
-                            <a href="#" class="shop-now style2 ">Shop now<i class="fa fa-angle-right"
-                                                                            aria-hidden="true"></i></a>
-
-                        </div>
-
-                    </div>
-
+                    @if(count($banner3Cot))
+                        @foreach($banner3Cot as $item)
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <div class="promotion-banner item-1 style-6">
+                                    <a href="@if(isset($item->link)) {{$item->link}} @else # @endif" class="banner-img"><img
+                                                src="{{$item->image}}"
+                                                alt="{{str_slug($item->title)}}"></a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
 
             </div>
@@ -153,7 +91,7 @@
                                         <a href="#"><img src="{{$product->image}}" alt="r1"></a>
                                     </div>
                                     @if($product->sale_price!=0)
-                                        <span class="onsale">{{  ($product->price-$product->sale_price)/$product->price*100}}
+                                        <span class="onsale">{{ number_format(($product->price-$product->sale_price)/$product->price*100,0) }}
                                             %</span>
                                     @endif
                                 </div>
@@ -190,57 +128,59 @@
         <div class="block-bestseller-and-deals full-width">
 
             <div class="container">
+                @if(count($dealsOfWeek) == 0)
+                    <div class="block-bestseller-product style2" style="width: 100%;margin-right: 0;">
 
-                <div class="block-bestseller-product style2">
+                        <div class="title-of-section">Sản phẩm bán chạy</div>
 
-                    <div class="title-of-section">Sản phẩm bán chạy</div>
+                        <div class="bestseller-and-deals-content border-background equal-container">
+                            @foreach($listFeaturedProducts as $productF)
+                                <div class="product-item style1 col-md-3 col-sm-6 col-xs-6 padding-0 hidden-sm">
 
-                    <div class="bestseller-and-deals-content border-background equal-container">
-                        @foreach($listFeaturedProducts as $productF)
-                            <div class="product-item style1 col-md-4 col-sm-6 col-xs-6 padding-0 hidden-sm">
+                                    <div class="product-inner equal-elem">
 
-                                <div class="product-inner equal-elem">
+                                        <div class="product-thumb">
 
-                                    <div class="product-thumb">
+                                            <div class="thumb-inner">
 
-                                        <div class="thumb-inner">
+                                                <a href="#"><img src="{{$productF->image}}" alt="b5"></a>
 
-                                            <a href="#"><img src="{{$productF->image}}" alt="b5"></a>
+                                            </div>
+
+                                            @if($product->sale_price!=0)
+                                                <span class="onsale">{{number_format(($deal->price-$deal->sale_price)/$deal->price*100,0)}}
+                                                    %</span>
+                                            @endif
 
                                         </div>
 
-                                        @if($product->sale_price!=0)
-                                            <span class="onsale">{{number_format(($deal->price-$deal->sale_price)/$deal->price*100,0)}}
-                                                %</span>
-                                        @endif
+                                        <div class="product-innfo">
 
-                                    </div>
+                                            <div class="product-name"><a href="#">{{$productF->name}}</a></div>
 
-                                    <div class="product-innfo">
-
-                                        <div class="product-name"><a href="#">{{$productF->name}}</a></div>
-
-                                        @if($productF->sale_price !=0)
-                                            <span class="price">
+                                            @if($productF->sale_price !=0)
+                                                <span class="price">
                                         <ins>{{$productF->sale_price}}</ins>
                                         <del>{{$productF->price}}</del>
                                     </span>
-                                        @else
-                                            <span class="price price-dark">
+                                            @else
+                                                <span class="price price-dark">
                                               <ins>{{$productF->price}}</ins>
                                         </span>
-                                        @endif
-                                        <div class="group-btn-hover">
+                                            @endif
+                                            <div class="group-btn-hover">
 
-                                            <div class="inner">
+                                                <div class="inner">
 
-                                                <a href="#" class="compare"><i
-                                                            class="flaticon-refresh-square-arrows"></i></a>
+                                                    <a href="#" class="compare"><i
+                                                                class="flaticon-refresh-square-arrows"></i></a>
 
-                                                <a href="#" class="add-to-cart">Add to cart</a>
+                                                    <a href="#" class="add-to-cart">Add to cart</a>
 
-                                                <a href="#" class="wishlist"><i class="fa fa-heart-o"
-                                                                                aria-hidden="true"></i></a>
+                                                    <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                    aria-hidden="true"></i></a>
+
+                                                </div>
 
                                             </div>
 
@@ -249,21 +189,83 @@
                                     </div>
 
                                 </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="block-bestseller-product style2" style="width: 100%;margin-right: 0;">
 
-                            </div>
-                        @endforeach
+                        <div class="title-of-section">Sản phẩm bán chạy</div>
+
+                        <div class="bestseller-and-deals-content border-background equal-container">
+                            @foreach($listFeaturedProducts as $productF)
+                                <div class="product-item style1 col-md-4 col-sm-6 col-xs-6 padding-0 hidden-sm">
+
+                                    <div class="product-inner equal-elem">
+
+                                        <div class="product-thumb">
+
+                                            <div class="thumb-inner">
+
+                                                <a href="#"><img src="{{$productF->image}}" alt="b5"></a>
+
+                                            </div>
+
+                                            @if($product->sale_price!=0)
+                                                <span class="onsale">{{number_format(($deal->price-$deal->sale_price)/$deal->price*100,0)}}
+                                                    %</span>
+                                            @endif
+
+                                        </div>
+
+                                        <div class="product-innfo">
+
+                                            <div class="product-name"><a href="#">{{$productF->name}}</a></div>
+
+                                            @if($productF->sale_price !=0)
+                                                <span class="price">
+                                        <ins>{{$productF->sale_price}}</ins>
+                                        <del>{{$productF->price}}</del>
+                                    </span>
+                                            @else
+                                                <span class="price price-dark">
+                                              <ins>{{$productF->price}}</ins>
+                                        </span>
+                                            @endif
+                                            <div class="group-btn-hover">
+
+                                                <div class="inner">
+
+                                                    <a href="#" class="compare"><i
+                                                                class="flaticon-refresh-square-arrows"></i></a>
+
+                                                    <a href="#" class="add-to-cart">Add to cart</a>
+
+                                                    <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                    aria-hidden="true"></i></a>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
 
-                </div>
 
-                <div class="block-daily-deals style3">
+                    <div class="block-daily-deals style3">
 
-                    <div class="title-of-section">Sản phẩm khuyến mại</div>
+                        <div class="title-of-section">Sản phẩm khuyến mại</div>
 
-                    <div class="owl-carousel nav-style2" data-nav="true" data-autoplay="false" data-dots="true"
-                         data-loop="true" data-margin="10"
-                         data-responsive='{"0":{"items":1},"480":{"items":2},"680":{"items":3},"768":{"items":1}}'>
-                        @if(count($dealsOfWeek)>0)
+                        <div class="owl-carousel nav-style2" data-nav="true" data-autoplay="false" data-dots="true"
+                             data-loop="true" data-margin="10"
+                             data-responsive='{"0":{"items":1},"480":{"items":2},"680":{"items":3},"768":{"items":1}}'>
+
                             @foreach($dealsOfWeek as $deal)
                                 <div class="product-item style1">
 
@@ -321,10 +323,11 @@
 
                                 </div>
                             @endforeach
-                        @endif
-                    </div>
 
-                </div>
+                        </div>
+
+                    </div>
+                @endif
 
             </div>
 
@@ -335,28 +338,18 @@
             <div class="container">
 
                 <div class="row">
-
+                    @foreach($banner2Cot as $banner)
                     <div class="col-sm-6 col-xs-6">
 
                         <div class="promotion-banner style-7">
 
-                            <a href="#" class="banner-img"><img src="{{asset('/front')}}/images/home2/banner4.jpg"
-                                                                alt="banner4"></a>
-
+                            <a href="@if(isset($item->link)) {{$item->link}} @else # @endif"
+                               class="banner-img cot2"><img
+                                        src="{{$item->image}}"
+                                        alt="{{str_slug($item->title)}}"></a>
                         </div>
-
                     </div>
-
-                    <div class="col-sm-6 col-xs-6">
-
-                        <div class="promotion-banner style-7">
-
-                            <a href="#" class="banner-img"><img src="{{asset('/front')}}/images/home2/banner5.jpg"
-                                                                alt="banner5"></a>
-
-                        </div>
-
-                    </div>
+                    @endforeach
 
                 </div>
 

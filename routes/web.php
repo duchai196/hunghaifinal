@@ -12,14 +12,19 @@
 */
 
 
-require_once 'backend.php';
-require_once 'frontend.php';
 
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+require_once 'backend.php';
+require_once 'frontend.php';
+
+Route::get('/logout', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/');
+});
 
 Route::get('test',function (){
 

@@ -16,7 +16,6 @@
 <header class="site-header header-opt-1">
 
 
-
     <!-- header-top -->
 
     <div class="header-top">
@@ -24,27 +23,19 @@
         <div class="container">
 
 
-
             <!-- hotline -->
 
-            <ul class="nav-top-left" >
+            <ul class="nav-top-left">
 
-                <li><a href="#">Welcome to KryStal - Always free delivery</a></li>
+                <li><a href="#">Chào mừng bạn đến với của hàng Hùng Hải Sport</a></li>
 
             </ul><!-- hotline -->
-
 
 
             <!-- heder links -->
 
             <ul class="nav-top-right krystal-nav">
-
-                <li ><a href="#">Newsletter</a></li>
-
                 <li class="menu-item-has-children">
-                    <a href="#" class="dropdown-toggle">
-                        <img src="images/home1/l1.jpg" alt="flag">English<i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </a>
 
                     <ul class="submenu parent-megamenu">
 
@@ -83,47 +74,53 @@
                 </li>
 
                 <li class="menu-item-has-children">
+                    @if(Auth::check())
+                        <a href="#" class="dropdown-toggle">
+                            <a href="javascript:void(0)"><i class="fa fa-user"
+                                                            aria-hidden="true"></i>{{Auth::user()->name}} <i
+                                        class="fa fa-angle-down" aria-hidden="true"> </i></a>
+                        </a>
+                        <ul class="submenu parent-megamenu">
+                            @if(Auth::user()->role ==1 )
+                                <li class="switcher-option">
 
-                    <a href="#" class="dropdown-toggle">
+                                    <a href="{{route('admin')}}" class="switcher-flag icon"> Quản trị</a>
+                                    <a href="{{url('logout')}}" class="switcher-flag icon">Đăng xuất</a>
 
-                        <span>Dollar (US)</span><i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </li>
+                            @else
+                                <li class="switcher-option">
+                                    <a href="{{url('logout')}}" class="switcher-flag icon">Đăng xuất</a>
+                                </li>
+                            @endif
+                        </ul>
+                    @else
+                        <a href="#" class="dropdown-toggle">
+                            <a href="javascript:void(0)"><i class="fa fa-user"
+                                                            aria-hidden="true"></i>Tài khoản <i
+                                        class="fa fa-angle-down" aria-hidden="true"> </i></a>
+                        </a>
+                        <ul class="submenu parent-megamenu">
 
-                    </a>
+                            <li class="switcher-option">
 
-                    <ul class="submenu parent-megamenu">
+                                <a href="{{route('register')}}" class="switcher-flag icon"> Đăng ký</a>
+                                <a href="{{route('login')}}" class="switcher-flag icon">Đăng nhập</a>
 
-                        <li class="switcher-option">
+                            </li>
+                        </ul>
 
-                            <a href="#" class="switcher-flag icon">Pound (GBP)</a>
-
-                        </li>
-
-                        <li class="switcher-option">
-
-                            <a href="#" class="switcher-flag icon">Euro (EUR)</a>
-
-                        </li>
-
-                        <li class="switcher-option">
-
-                            <a href="#" class="switcher-flag icon">Dollar (USD)</a>
-
-                        </li>
-
-                    </ul>
+                    @endif
 
                 </li>
 
-                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>Register / Sign in</a></li>
 
             </ul><!-- heder links -->
-
 
 
         </div>
 
     </div> <!-- header-top -->
-
 
 
     <!-- header-content -->
@@ -147,7 +144,6 @@
                 </div>
 
                 <div class="col-md-8 nav-mind">
-
 
 
                     <!-- block search -->
@@ -190,7 +186,8 @@
 
                                     <div class="box-group">
 
-                                        <input type="text" class="form-control" placeholder="Searh entire store here...">
+                                        <input type="text" class="form-control"
+                                               placeholder="Searh entire store here...">
 
                                         <button class="btn btn-search" type="button"><span>search</span></button>
 
@@ -213,12 +210,12 @@
                     <div class="block-minicart dropdown">
 
 
-
                         <a class="minicart" href="#">
 
                                     <span class="counter qty">
 
-                                        <span class="cart-icon"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
+                                        <span class="cart-icon"><i class="fa fa-shopping-bag"
+                                                                   aria-hidden="true"></i></span>
 
                                         <span class="counter-number">2</span>
 
@@ -238,7 +235,7 @@
 
                             <form>
 
-                                <div class="minicart-content-wrapper" >
+                                <div class="minicart-content-wrapper">
 
                                     <div class="subtitle">
 
@@ -264,9 +261,11 @@
 
                                                 <div class="product-innfo">
 
-                                                    <div class="product-name"><a href="#">Xbox One S Halo Collection Bund</a></div>
+                                                    <div class="product-name"><a href="#">Xbox One S Halo Collection
+                                                            Bund</a></div>
 
-                                                    <a href="#" class="remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                    <a href="#" class="remove"><i class="fa fa-times"
+                                                                                  aria-hidden="true"></i></a>
 
                                                     <span class="price price-dark">
 
@@ -292,8 +291,10 @@
 
                                                 <div class="product-innfo">
 
-                                                    <div class="product-name"><a href="#">Acer's Aspire S7 is a thin and portable...</a></div>
-                                                    <a href="#" class="remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                    <div class="product-name"><a href="#">Acer's Aspire S7 is a thin and
+                                                            portable...</a></div>
+                                                    <a href="#" class="remove"><i class="fa fa-times"
+                                                                                  aria-hidden="true"></i></a>
 
                                                     <span class="price">
 
@@ -340,7 +341,6 @@
                     <a class="wishlist-minicart" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
 
 
-
                 </div>
 
             </div>
@@ -377,7 +377,7 @@
 
                         </h4>
 
-                        <div class="vertical-menu-content" >
+                        <div class="vertical-menu-content">
                             <span class="btn-close hidden-md"><i class="fa fa-times" aria-hidden="true"></i></span>
 
                             <ul class="vertical-menu-list">
@@ -405,7 +405,8 @@
 
                                                             <ul class="menu">
 
-                                                                <li class="menu-item"><a href="#">Leather Jackets</a></li>
+                                                                <li class="menu-item"><a href="#">Leather Jackets</a>
+                                                                </li>
 
                                                                 <li class="menu-item"><a href="#">Handbags</a></li>
 
@@ -437,13 +438,16 @@
 
                                                             <ul class="menu">
 
-                                                                <li class="menu-item"><a href="#">Hair Accessories</a></li>
+                                                                <li class="menu-item"><a href="#">Hair Accessories</a>
+                                                                </li>
 
-                                                                <li class="menu-item"><a href="#">Bloves & Mittens</a></li>
+                                                                <li class="menu-item"><a href="#">Bloves & Mittens</a>
+                                                                </li>
 
                                                                 <li class="menu-item"><a href="#">Hats</a></li>
 
-                                                                <li class="menu-item"><a href="#">Tech Accessories</a></li>
+                                                                <li class="menu-item"><a href="#">Tech Accessories</a>
+                                                                </li>
 
                                                                 <li class="menu-item"><a href="#">Head Set</a></li>
 
@@ -486,7 +490,8 @@
 
                                                             <ul class="menu">
 
-                                                                <li class="menu-item"><a href="#">Leather Jackets</a></li>
+                                                                <li class="menu-item"><a href="#">Leather Jackets</a>
+                                                                </li>
 
                                                                 <li class="menu-item"><a href="#">Handbags</a></li>
 
@@ -518,13 +523,16 @@
 
                                                             <ul class="menu">
 
-                                                                <li class="menu-item"><a href="#">Hair Accessories</a></li>
+                                                                <li class="menu-item"><a href="#">Hair Accessories</a>
+                                                                </li>
 
-                                                                <li class="menu-item"><a href="#">Bloves & Mittens</a></li>
+                                                                <li class="menu-item"><a href="#">Bloves & Mittens</a>
+                                                                </li>
 
                                                                 <li class="menu-item"><a href="#">Hats</a></li>
 
-                                                                <li class="menu-item"><a href="#">Tech Accessories</a></li>
+                                                                <li class="menu-item"><a href="#">Tech Accessories</a>
+                                                                </li>
 
                                                                 <li class="menu-item"><a href="#">Head Set</a></li>
 
@@ -574,11 +582,14 @@
 
                                                             <ul class="menu">
 
-                                                                <li class="menu-item"><a href="#">Laptops, Desktops & Monitors</a></li>
+                                                                <li class="menu-item"><a href="#">Laptops, Desktops &
+                                                                        Monitors</a></li>
 
-                                                                <li class="menu-item"><a href="#">Printers & Ink</a></li>
+                                                                <li class="menu-item"><a href="#">Printers & Ink</a>
+                                                                </li>
 
-                                                                <li class="menu-item"><a href="#">Computer Accessories</a></li>
+                                                                <li class="menu-item"><a href="#">Computer
+                                                                        Accessories</a></li>
 
                                                                 <li class="menu-item"><a href="#">Software</a></li>
 
@@ -608,7 +619,8 @@
 
                                                                 <li class="menu-item"><a href="#">Accessories</a></li>
 
-                                                                <li class="menu-item"><a href="#">Phone Batteries</a></li>
+                                                                <li class="menu-item"><a href="#">Phone Batteries</a>
+                                                                </li>
 
                                                                 <li class="menu-item"><a href="#">Phone Charger</a></li>
 
