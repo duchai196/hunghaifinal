@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 30, 2018 lúc 08:28 PM
+-- Thời gian đã tạo: Th4 09, 2018 lúc 06:17 AM
 -- Phiên bản máy phục vụ: 10.1.30-MariaDB
 -- Phiên bản PHP: 7.1.14
 
@@ -440,7 +440,14 @@ CREATE TABLE `slides` (
 --
 
 INSERT INTO `slides` (`id`, `title`, `sub_title`, `descriptions`, `link`, `title_link`, `image`, `type`, `status`, `order`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/Best-Abstract-Art-Wallpaper-HD.jpg', '0', 1, NULL, '2018-03-30 18:08:55', '2018-03-30 18:08:55');
+(1, 'Khuyến mãi lớn', 'Giảm giá 20% khi đặt hàng online', NULL, '#', 'Xem ngay', '/photos/1/banner/Best-Abstract-Art-Wallpaper-HD.jpg', '0', 1, NULL, '2018-03-30 18:08:55', '2018-03-30 18:08:55'),
+(2, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/38154745-flat-wallpaper.jpg', '1', 1, NULL, '2018-04-05 16:31:11', '2018-04-05 16:31:11'),
+(3, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/37641697-flat-wallpaper.jpg', '1', 1, NULL, '2018-04-05 16:31:21', '2018-04-05 16:31:21'),
+(4, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/Flat-Wallpaper-005.jpg', '1', 1, NULL, '2018-04-05 16:31:41', '2018-04-05 16:31:41'),
+(5, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/Flat-Wallpaper-005.jpg', '2', 1, NULL, '2018-04-05 16:33:09', '2018-04-05 16:33:09'),
+(6, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/Best-Abstract-Art-Wallpaper-HD.jpg', '2', 1, NULL, '2018-04-05 16:33:20', '2018-04-05 16:33:20'),
+(7, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/37797073-adventure-time-wallpaper-hd.jpg', '1', 1, NULL, '2018-04-05 16:39:32', '2018-04-05 16:39:32'),
+(8, NULL, NULL, NULL, NULL, NULL, '/photos/1/banner/ss.jpg', '2', 1, NULL, '2018-04-05 16:57:28', '2018-04-05 16:57:28');
 
 -- --------------------------------------------------------
 
@@ -482,7 +489,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `full_name`, `address`, `phone`, `avartar`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Hai Duc Nguyen', 'duchai196@gmail.com', '$2y$10$FXefMJbITCrOpTbT0PBuXuKcxG.fArJBVx2NVAD8mImn39lWCIhpW', NULL, NULL, NULL, NULL, 0, 'a3kn52GLJ2IQc3W3Rhj04q7FZhuHR6US6sR92hFFdKVBfs5tbV2AFO51fFfp', '2018-02-26 08:46:27', '2018-02-26 08:46:27');
+(1, 'Hai Duc Nguyen', 'duchai196@gmail.com', '$2y$10$FXefMJbITCrOpTbT0PBuXuKcxG.fArJBVx2NVAD8mImn39lWCIhpW', NULL, NULL, NULL, NULL, 1, 'fHeuB6rRNMdAIatA8m4T3NCTGAHw5tReY4DlVMIfZV9uRYY5Ei8HgTfHM0Qj', '2018-02-26 08:46:27', '2018-02-26 08:46:27');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -689,7 +696,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT cho bảng `slides`
 --
 ALTER TABLE `slides`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `species`
